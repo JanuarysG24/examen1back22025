@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 @Entity
 public class Curso {
 
-    @I
-    @Ge(strategy = IDENTITY)
+    @Id
+    @Get(strategy = IDENTITY)
     private Integer id;
     private String nombre
 
@@ -22,6 +22,6 @@ public class Curso {
         this.id = id;
         this.nombre = nombre;
     }
-
+    //faltaron getter and setters
 
 }
