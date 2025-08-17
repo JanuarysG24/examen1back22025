@@ -1,26 +1,31 @@
 package com.example.Examen1Back2.modelos;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import com.example.alumno.Help.TipoUsuario;
 
-@Entit
+@Entity
 @Table(name = "usuarios")
 public class Usuario {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.)
-    @Colun(name = "id_usuario")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_usuario")
     private Integer id;
 
-    @Column(nullable = false, length = 100)
+    @Column(nulltable = false, length = 100)
     private String nombre;
 
-    @Colun(name = "correo_electronico", unique = true)
+    @Column(name = "correo_electronico", unique = true)
     private String correoElectronico;
     private String contrasena;
     private String telefono;
 
+    public enum TipoUsuario {
+        ADMIN, DOCENTE, USUARIO
+    }
+
     @Enumerated(EnumType.STRING)
-    private String tipoUsuario;
+    private TipoUsuario tipoUsuario;
 
     //Estableciendo la relacion uno a uno con la tabla docente
     @OneToOne(mappedBy = "usuario")
@@ -29,19 +34,16 @@ public class Usuario {
 
     public Usuario() {
     }
- //se añade el constructor con todos los atributos
-   /* public Usuario(Integer id, String nombre, String correoElectronico, String contraseña, String telefono, String tipoUsuario) {
+
+    public Usuario(Integer id, String nombre, String correoElectronico, String contrasena, String telefono, TipoUsuario tipoUsuario, Docente docente) {
         this.id = id;
         this.nombre = nombre;
         this.correoElectronico = correoElectronico;
         this.contrasena = contrasena;
         this.telefono = telefono;
         this.tipoUsuario = tipoUsuario;
+        this.docente = docente;
     }
-    */
-
-//se añade los getter an setter
-
 
     public Integer getId() {
         return id;
@@ -68,11 +70,11 @@ public class Usuario {
     }
 
     public String getContrasena() {
-        return contraseña;
+        return contrasena;
     }
 
     public void setContrasena(String contrasena) {
-        this.contraseña = contraseña;
+        this.contrasena = contrasena;
     }
 
     public String getTelefono() {
@@ -83,19 +85,19 @@ public class Usuario {
         this.telefono = telefono;
     }
 
-    public String getTipoUsuario() {
+    public TipoUsuario getTipoUsuario() {
         return tipoUsuario;
     }
 
-    public void setTipoUsuario(String tipoUsuario) {
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
     }
 
-    public  getDocente() {
+    public Docente getDocente() {
         return docente;
     }
 
-    public void setDocente(Strin docente) {
+    public void setDocente(Docente docente) {
         this.docente = docente;
     }
 }

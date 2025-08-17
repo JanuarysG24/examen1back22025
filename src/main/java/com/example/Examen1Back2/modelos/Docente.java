@@ -4,10 +4,11 @@ import jakarta.persistence.*;
 
 import java.util.List;
 
-@Entit
+@Entity
+@Table(name = "docente")
 public class Docente {
 
-
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
@@ -23,10 +24,7 @@ public class Docente {
     @JsonManagedReference(value = "docente-usuario")
     private Usuario usuario;
 
-    //faltaron los constructores y getter and setters
-    public  Docente(){
-
-    }
+    public Docente() {}
 
     public Docente(Integer id, String especialidad, List<Curso> cursos, Usuario usuario) {
         this.id = id;
@@ -66,23 +64,4 @@ public class Docente {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-
-    /*
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getEspecialidad() {
-        return especialidad;
-    }
-
-    public void setEspecialidad(String especialidad) {
-        this.especialidad = especialidad;
-    }
-
- */
 }
